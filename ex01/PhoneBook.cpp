@@ -58,6 +58,9 @@ void PhoneBook::searchContact() const {
     while (true) {
         std::cout << "Enter the index of a contact: ";
         std::cin >> input;
+		if (std::cin.eof()) {
+            return;
+        }
 		if (input.length() == 1 && std::isdigit(input[0]))
 		{
 			index = input[0] - '0';
