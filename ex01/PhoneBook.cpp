@@ -64,7 +64,7 @@ void PhoneBook::searchContact() const {
 		if (input.length() == 1 && std::isdigit(input[0]))
 		{
 			index = input[0] - '0';
-			if (index >= 0 && index <= _contactCount) {
+			if (index >= 1 && index <= _contactCount) {
 				break;
 			}
 			else
