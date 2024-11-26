@@ -52,24 +52,25 @@ void PhoneBook::afficheContacts() const {
 }
 
 void PhoneBook::searchContact() const {
-    int			i;
-    std::string input;
+  	std::string input;
+	int index;
 	PhoneBook::afficheContacts();
     while (true) {
         std::cout << "Enter the index of a contact: ";
-        std::getline(std::cin, input);
-        if (std::cin.eof()) {
-            return;
-        }
-        std::stringstream ss(input);
-        if (ss >> i && ss.eof() && i > 0 && i <= _contactCount) {
-        	break ;
-        }
-		std::cout << "Invalid index. Please try again." << std::endl;
-    }
-    std::cout << "First name    : " << _contact[i - 1].getFirstName() << std::endl;
-    std::cout << "Last name     : " << _contact[i - 1].getLastName() << std::endl;
-    std::cout << "Nick name     : " << _contact[i - 1].getNickName() << std::endl;
-    std::cout << "Phone number  : " << _contact[i - 1].getPhoneNumber() << std::endl;
-    std::cout << "Darkest secret: " << _contact[i - 1].getTheSecret() << std::endl;
+        std::cin >> input;
+		if (input.length() == 1 && std::isdigit(input[0]))
+		{
+			index = input[0] - '0';
+			if (index >= 0 && index <= _contactCount) {
+				break;
+			}
+			else
+				std::cout << "Invalid index. Please enter a number between 0 and " << _contactCount << "." << std::endl;
+		}
+	}
+    std::cout << "First name    : " << _contact[index - 1].getFirstName() << std::endl;
+    std::cout << "Last name     : " << _contact[index - 1].getLastName() << std::endl;
+    std::cout << "Nick name     : " << _contact[index - 1].getNickName() << std::endl;
+    std::cout << "Phone number  : " << _contact[index - 1].getPhoneNumber() << std::endl;
+    std::cout << "Darkest secret: " << _contact[index - 1].getTheSecret() << std::endl;
 }
