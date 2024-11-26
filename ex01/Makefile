@@ -4,7 +4,9 @@ NAME = PhoneBook
 
 SRC_DIR = ./
 
-SRC = 	./megaphone.cpp
+SRC = 	./PhoneBook.cpp \
+		./Contact.cpp \
+		./main.cpp 
 
 # Objects
 

@@ -1,48 +1,33 @@
-NAME = megaphone
+NAME    = megaphone
 
-# Sources (нужно убрать папку SRC_DIR)
-
-SRC_DIR = ./
-
-SRC = 	megaphone.cpp
+# Sources
+SRC     = megaphone.cpp
 
 # Objects
-
 OBJ_DIR = ./obj
-
-OBJ		= $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
+OBJ     = $(OBJ_DIR)/megaphone.o
 
 # Compilation
+CC      = g++
+CFLAGS  = -Wall -Wextra -Werror -std=c++98
 
-CC		= g++
-CF		= -Wall -Wextra -Werror -std=c++98
+all: $(NAME)
 
-all:	$(NAME)
+$(NAME): $(OBJ)
+	@$(CC) $(CFLAGS) -o $@ $^
+	@echo "Megaphone successfully updated!"
 
-$(NAME):	$(OBJ)
-	@$(CC) -g -o $(NAME) $(OBJ)
-	@echo "$(NAME) is ready!"
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
-	@echo "Compiling $<"
+$(OBJ_DIR)/%.o: %.cpp
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CF) -c $< -o $@
-
-$(OBJ_DIR):
-	@mkdir -p $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 # Cleaning
-
 clean:
 	@rm -rf $(OBJ_DIR)
-	@echo "Objects and dependend files removed."
 
-fclean:	clean
-	@rm -rf $(NAME)
-	@echo "Binary files removed."
+fclean: clean
+	@rm -f $(NAME)
 
 re: fclean all
 
-.PHONY:	all clean fclean re
-
-# изменить это :  использовать $(OBJ_DIR) напрямую в правилах (не создавать отдельно)
+.PHONY: all clean fclean re

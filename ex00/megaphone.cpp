@@ -4,9 +4,7 @@
 
 void ft_megaphone(std::string &s)
 {
-	int i;
-
-	i = 0;
+	size_t i = 0;
 	while(i < s.length())
 	{
 		if(std::isalpha(s[i]))
